@@ -1,0 +1,73 @@
+* {
+  font-family: 'Kanit', sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 400;
+}
+
+.v-main .v-main__wrap .container section {
+  position: relative;
+  min-height: calc(100vh - 88px);
+}
+
+.v-toolbar__content,
+.v-toolbar__extension {
+  margin: auto;
+}
+
+.theme--light.v-btn--active:hover::before,
+.theme--light.v-btn--active::before,
+.theme--dark.v-btn--active:hover::before,
+.theme--dark.v-btn--active::before {
+  opacity: 0 !important;
+}
+
+@media (min-width: 1264px) {
+  .v-toolbar__content,
+  .v-toolbar__extension {
+    max-width: 1485px;
+  }
+}
+
+@media (min-width: 1904px) {
+  .v-toolbar__content,
+  .v-toolbar__extension {
+    max-width: 1785px;
+  }
+}
+
+.img-banner {
+  position: fixed;
+  top: 0;
+  left: 50%;
+  width: 25rem;
+  transform: translate(-50%, 0);
+}
+
+@media (min-width: 960px) {
+  .img-banner {
+    width: 35rem;
+  }
+}
+
+.content-wrapper {
+  position: relative;
+  padding: 5rem 0 3rem 0;
+}
+
+.content {
+  border-radius: 0.5rem;
+  backdrop-filter: brightness(80%) blur(5px);
+  box-shadow: 0 20px 30px -20px rgb(0 0 0 / 10%);
+}
+
+.content h1 {
+  font-size: 1.75rem;
+  font-weight: 500;
+}
