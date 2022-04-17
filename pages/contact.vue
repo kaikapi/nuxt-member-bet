@@ -2,8 +2,8 @@
   <section id="contact">
     <div class="content-wrapper">
       <v-row>
-        <v-col sm="6" class="pa-5 pa-sm-0 mx-auto">
-          <div class="content pa-6">
+        <v-col sm="8" class="pa-5 pa-sm-0 mx-auto">
+          <div class="content form pa-6">
             <h1 class="text-center">ติดต่อ / แจ้งปัญหา</h1>
             <p class="text-center my-8">
               หากคุณมีปัญหาการใช้งาน สามารถดูวิธีการแก้ปัญหาเบื้องต้นได้ที่หน้า
@@ -33,8 +33,18 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
+
 export default {
   layout: 'default',
+  head() {
+    return {
+      title: 'ติดต่อ / แจ้งปัญหา ' + this.name.toUpperCase(),
+    }
+  },
+  computed: {
+    ...mapState('prefix', ['name']),
+  },
 }
 </script>
 
@@ -45,16 +55,5 @@ a {
 
 .v-btn:hover {
   transform: translateY(-0.25rem);
-}
-
-@media (min-width: 960px) {
-  .content-wrapper {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 100%;
-    transform: translate(-50%, -50%);
-    padding: 0;
-  }
 }
 </style>

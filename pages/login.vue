@@ -1,50 +1,67 @@
 <template>
-  <section id="login">
-    <v-img
-      :src="require('~/assets/images/banner/003.png')"
-      alt="images banner"
-      class="img-banner"
-    ></v-img>
-    <div class="content-wrapper">
-      <v-row>
-        <v-col sm="5" class="pa-5 pa-sm-0 mx-auto">
-          <div class="content pa-6">
-            <h1 class="text-center mb-10">เข้าสู่ระบบ</h1>
-            <v-text-field
-              :rules="rules_phone"
-              type="tel"
-              color="amber darken-3"
-              outlined
-              label="เบอร์โทรศัพท์มือถือ"
-              prepend-inner-icon="mdi-phone-dial"
-              class="mb-5"
-            ></v-text-field>
-            <v-text-field
-              :rules="rules_password"
-              type="password"
-              color="amber darken-3"
-              outlined
-              label="รหัสผ่าน หรือเลขบัญชีธนาคาร"
-              prepend-inner-icon="mdi-shield-key"
-            ></v-text-field>
-            <p class="text-right mb-8">
-              <nuxt-link class="amber--text" to="/">ลืมรหัสผ่าน</nuxt-link>
-            </p>
-            <div class="d-flex justify-center">
-              <v-btn color="amber darken-3" elevation="8" large rounded
-                >เข้าสู่ระบบ</v-btn
-              >
-            </div>
-          </div>
-        </v-col>
-      </v-row>
+  <div class="content-wrapper">
+    <h1 class="text-h6 text-center yellow--text text--darken-2 mb-8">
+      เข้าสู่ระบบ
+    </h1>
+    <form class="form">
+      <div class="content form">
+        <label for="username">เบอร์โทรศัพท์มือถือ</label>
+        <v-text-field
+          v-model="username"
+          :rules="rules_phone"
+          type="tel"
+          color="yellow darken-2"
+          outlined
+          prepend-inner-icon="mdi-phone-dial"
+          :background-color="primaryDarken"
+          hide-details="auto"
+          class="my-3"
+        ></v-text-field>
+        <label for="password">รหัสผ่าน หรือเลขบัญชีธนาคาร</label>
+        <v-text-field
+          v-model="password"
+          :rules="rules_password"
+          type="password"
+          color="yellow darken-2"
+          outlined
+          prepend-inner-icon="mdi-shield-key"
+          :background-color="primaryDarken"
+          hide-details="auto"
+          class="my-3"
+        ></v-text-field>
+      </div>
+      <div class="action-block mt-8">
+        <a href="javascript:void(0)" class="button warning" @click="onSubmit">
+          เข้าสู่ระบบ
+        </a>
+      </div>
+    </form>
+    <div class="content pa-0 mt-8">
+      <p>
+        <nuxt-link
+          :to="'/contact?prefix=' + name"
+          class="yellow--text text--darken-2"
+          >ลืมรหัสผ่าน</nuxt-link
+        >
+      </p>
+      <p>
+        ยังไม่มีบัญชีผู้ใช้?&nbsp;
+        <nuxt-link
+          :to="'/register?prefix=' + name"
+          class="yellow--text text--darken-2"
+          >สมัครสมาชิก?</nuxt-link
+        >
+      </p>
     </div>
-  </section>
+  </div>
 </template>
 
 <script>
+import { mapState } from 'vuex'
+
 export default {
   layout: 'default',
+  middleware: 'isLoggedIn',
   data: () => ({
     rules_phone: [
       (value) => !!value || 'กรุณากรอก หมายเลขโทรศัพท์',
@@ -59,23 +76,47 @@ export default {
       (value) =>
         (value || '').length >= 6 || 'รหัสผ่าน หรือเลขบัญชีธนาคารไม่ถูกต้อง',
     ],
+    username: '0918654712',
+    password: 'asas',
   }),
   head() {
     return {
-      title: 'LOGIN ' + this.$store.getters['partner/getPrefix'],
+      title: 'เข้าสู่ระบบ ' + this.name.toUpperCase(),
     }
+  },
+  computed: {
+    ...mapState('prefix', ['name']),
+    ...mapState('color', ['primaryDarken']),
+  },
+  methods: {
+    async onSubmit(e) {
+      e.preventDefault()
+      const payload = {
+        data: {
+          username: this.username,
+          password: this.password,
+        },
+      }
+      try {
+        await this.$auth.loginWith('local', payload)
+        this.$toast.success('คุณได้เข้าสู่ระบบแล้ว')
+      } catch (error) {
+        this.error = error
+      }
+    },
   },
 }
 </script>
 
 <style scoped>
-.content-wrapper {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 100%;
-  transform: translate(-50%, -50%);
-  padding: 0;
+h1 {
+  /* font-size: 1.25rem; */
+  font-weight: 500;
+}
+
+.content {
+  max-width: 375px;
+  backdrop-filter: unset;
 }
 
 a {

@@ -1,0 +1,108 @@
+.summary {
+  position: relative;
+  max-width: 640px;
+  margin: 0 auto 1rem auto;
+}
+
+.summary.bonus {
+  background-color: #a8b4f3;
+  box-shadow: 0 15px 20px rgb(0 12 77 / 20%);
+  margin-top: 0;
+  padding-top: 20px;
+  opacity: 0.5;
+}
+
+.summary.bonus .amount::after {
+  font-size: 20px;
+}
+
+.summary.bonus .amount .label {
+  font-weight: 300;
+  font-style: italic;
+  font-size: 16px;
+}
+
+.balance,
+.bonus {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  font-weight: 500;
+  padding: 1.5rem;
+}
+
+.amount .label,
+.count-down .label {
+  display: block;
+}
+
+.balance .amount {
+  font-size: 35px;
+}
+
+.bonus .amount {
+  font-size: 20px;
+}
+
+.count-down {
+  align-self: center;
+  justify-self: end;
+  font-size: 12px;
+}
+
+.count-down .label {
+  opacity: 0.5;
+}
+
+.amount:after {
+  content: '฿';
+  font-size: 24px;
+}
+
+.amount .label {
+  font-size: 16px;
+}
+
+.balance {
+  background-color: #fff;
+  color: #4056d4;
+  border-radius: 15px;
+  box-shadow: 0 15px 20px rgb(0 12 77 / 20%);
+  z-index: 3;
+}
+
+.balance .arrow {
+  position: relative;
+  display: grid;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.bonus {
+  border-radius: 15px 15px 15px 15px;
+  font-size: 20px;
+  padding-top: 40px;
+  margin-top: -20px;
+  transition: all 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.affiliate {
+  background-color: #8f9eef;
+  box-shadow: 0 15px 20px rgb(0 12 77 / 5%);
+  z-index: 2;
+}
+
+.summary.collapse .affiliate {
+  margin-top: -110px;
+}
+
+.cashback {
+  background-color: #7584e6;
+  box-shadow: 0 15px 20px rgb(0 12 77 / 20%);
+  z-index: 1;
+}
+
+.summary.collapse .affiliate,
+.summary.collapse .cashback {
+  margin-top: -115px;
+}

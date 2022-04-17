@@ -26,7 +26,7 @@ export default {
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
-  css: ['~/assets/css/styles'],
+  css: ['~/assets/scss/styles'],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: ['~/plugins/axios'],
@@ -46,22 +46,80 @@ export default {
   modules: [
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
+    '@nuxtjs/auth',
+    '@nuxtjs/toast',
+    [
+      'nuxt-vuex-localstorage',
+      {
+        localStorage: ['prefix'],
+        mode: 'debug',
+      },
+    ],
   ],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
     // Workaround to avoid enforcing hard-coded localhost:3000: https://github.com/nuxt-community/axios-module/issues/308
-    baseURL: 'https://api.czbet.net/api/v1',
+    baseURL: 'https://api.czbet.net/api/v2',
+    credentials: false,
+  },
+
+  auth: {
+    strategies: {
+      // autoFetchUser: false,
+      local: {
+        endpoints: {
+          login: {
+            url: 'login',
+            method: 'post',
+            propertyName: 'data.access_token',
+          },
+          // user: { url: 'check_prefix', method: 'post', propertyName: 'data' },
+          user: false,
+          logout: false,
+        },
+      },
+    },
+    redirect: {
+      login: '/login',
+      logout: '/login',
+      home: '/profile',
+    },
+  },
+
+  toast: {
+    position: 'top-center',
+    duration: 3000,
+    register: [
+      // Register custom toasts
+      {
+        name: 'my-error',
+        message: 'Oops...Something went wrong',
+        options: {
+          type: 'error',
+        },
+      },
+    ],
   },
 
   // Vuetify module configuration: https://go.nuxtjs.dev/config-vuetify
   vuetify: {
-    customVariables: ['~/assets/variables.scss'],
+    customVariables: ['~/styles/variables.scss'],
+    defaultAssets: {
+      font: {
+        family: 'Kanit',
+      },
+      icons: 'mdi',
+    },
+    treeShake: true,
+    options: {
+      customProperties: true,
+    },
     theme: {
       dark: true,
       themes: {
         dark: {
-          primary: colors.blue.darken2,
+          primary: colors.indigo.darken3,
           accent: colors.grey.darken3,
           secondary: colors.amber.darken3,
           info: colors.teal.lighten1,
@@ -74,5 +132,7 @@ export default {
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
-  build: {},
+  build: {
+    transpile: ['nuxt-vuex-localstorage'],
+  },
 }

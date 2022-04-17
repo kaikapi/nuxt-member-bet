@@ -40,4 +40,8 @@ export default {
 h1 {
   font-size: 20px;
 }
+
+a {
+  color: aliceblue;
+}
 </style>

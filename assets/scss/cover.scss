@@ -1,0 +1,42 @@
+.cover {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  width: 260px;
+}
+
+.bank-logo {
+  display: flex;
+  align-items: center;
+  padding: 0.5rem;
+  width: 80px;
+  height: 80px;
+  border-radius: 1rem;
+}
+
+.bank-logo .v-image {
+  display: block;
+}
+
+.bank-detail {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.bank-detail p {
+  margin: 0 !important;
+}
+
+.bank-detail p:nth-child(1) {
+  font-weight: 300;
+}
+
+.bank-detail p:nth-child(2) {
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.bank-detail p:nth-child(3) {
+  font-weight: 500;
+}
