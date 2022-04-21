@@ -7,7 +7,6 @@
         show-arrows
         color="white"
         background-color="transparent"
-        @change="filterVendor"
       >
         <v-tab v-for="item in items" :key="item">
           {{ item }}
@@ -112,6 +111,7 @@ export default {
   },
   computed: {
     ...mapState('color', ['primaryDarken']),
+    ...mapState('prefix', ['name']),
   },
 }
 </script>

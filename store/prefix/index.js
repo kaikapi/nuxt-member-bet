@@ -1,6 +1,6 @@
 export const state = () => ({
   ip: null,
-  name: 'czbet',
+  name: '',
   isPromotion: null,
   imageLogo: null,
   liffId: null,
@@ -43,18 +43,20 @@ export const actions = {
       commit('setIp', ip.split('\n')[0])
     } catch (error) {}
   },
-  async changePrefix({ commit, dispatch }, name) {
-    try {
-      const checkPrefix = await this.$axios.$post('check_prefix')
-      if (checkPrefix.status) {
-        commit('setName', name)
-        commit('setIsPromotion', checkPrefix.data.affiliate_new_promotion)
-        commit('setImageLogo', checkPrefix.data.image_logo)
-        commit('setLiffId', checkPrefix.data.liff_id)
-        commit('setLineSupport', checkPrefix.data.line_support)
-        commit('setPromotions', checkPrefix.data.promotions)
-        commit('setReferences', checkPrefix.data.references)
-      }
-    } catch (error) {}
+  changePrefix({ commit }, name) {
+    commit('setName', name)
+
+    // try {
+    //   const checkPrefix = await this.$axios.$post('check_prefix')
+    //   if (checkPrefix.status) {
+    //     commit('setName', name)
+    //     commit('setIsPromotion', checkPrefix.data.affiliate_new_promotion)
+    //     commit('setImageLogo', checkPrefix.data.image_logo)
+    //     commit('setLiffId', checkPrefix.data.liff_id)
+    //     commit('setLineSupport', checkPrefix.data.line_support)
+    //     commit('setPromotions', checkPrefix.data.promotions)
+    //     commit('setReferences', checkPrefix.data.references)
+    //   }
+    // } catch (error) {}
   },
 }

@@ -60,6 +60,7 @@
 import { mapState } from 'vuex'
 
 export default {
+  name: 'Login',
   layout: 'default',
   middleware: 'isLoggedIn',
   data: () => ({
@@ -93,7 +94,7 @@ export default {
       e.preventDefault()
       const payload = {
         data: {
-          username: this.username,
+          phone: this.username,
           password: this.password,
         },
       }

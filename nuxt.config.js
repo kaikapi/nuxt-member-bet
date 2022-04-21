@@ -60,7 +60,7 @@ export default {
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
     // Workaround to avoid enforcing hard-coded localhost:3000: https://github.com/nuxt-community/axios-module/issues/308
-    baseURL: 'https://api.czbet.net/api/v2',
+    baseURL: 'https://api.maxnano.net/api/v1',
     credentials: false,
   },
 
@@ -70,9 +70,9 @@ export default {
       local: {
         endpoints: {
           login: {
-            url: 'login',
+            url: 'auth/login',
             method: 'post',
-            propertyName: 'data.access_token',
+            propertyName: 'data.token',
           },
           // user: { url: 'check_prefix', method: 'post', propertyName: 'data' },
           user: false,

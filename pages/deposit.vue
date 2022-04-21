@@ -2,17 +2,20 @@
   <section id="deposit">
     <div class="content-wrapper pb-0">
       <h1 class="text-h6 text-center mb-5">ฝากเงิน</h1>
-      <div class="content form d-grid">
-        <p>
+      <div class="content form d-grid pa-3 pa-md-5">
+        <p class="text-center text-md-left">
           กรุณาโอนเงินจากบัญชีที่ท่านได้ลงทะเบียนไว้
           เข้าบัญชีที่กำหนดให้ด้านล่าง
         </p>
         <div class="content form">
           <div class="cover">
-            <div class="bank-logo" :style="{ background: banks['scb'].color }">
+            <div
+              class="bank-logo"
+              :style="{ background: bankIcons['scb'].color }"
+            >
               <v-img
-                :src="banks['scb'].image"
-                :alt="banks['scb'].nice_name"
+                :src="bankIcons['scb'].image"
+                :alt="bankIcons['scb'].nice_name"
               ></v-img>
             </div>
             <div class="bank-detail">
@@ -25,10 +28,13 @@
         <v-icon class="my-5">mdi-arrow-down</v-icon>
         <div class="content form mb-3">
           <div class="cover">
-            <div class="bank-logo" :style="{ background: banks['scb'].color }">
+            <div
+              class="bank-logo"
+              :style="{ background: bankIcons['scb'].color }"
+            >
               <v-img
-                :src="banks['scb'].image"
-                :alt="banks['scb'].nice_name"
+                :src="bankIcons['scb'].image"
+                :alt="bankIcons['scb'].nice_name"
               ></v-img>
             </div>
             <div class="bank-detail">
@@ -44,7 +50,7 @@
             คัดลอก
           </a>
         </p>
-        <p class="note mt-10">
+        <p class="text-center text-md-left note mt-10">
           * เมื่อโอนแล้วยอดเงินจะเข้าในระบบโดยอัตโนมัติ ภายใน 15 นาที
           ท่านสามารถเช็คยอดเงินได้ที่&nbsp;
           <nuxt-link :to="'/profile?prefix=' + name" class="warning--text"
@@ -57,7 +63,7 @@
 </template>
         
 <script>
-import { mapGetters, mapState } from 'vuex'
+import { mapState } from 'vuex'
 
 export default {
   name: 'Deposit',
@@ -65,9 +71,7 @@ export default {
   middleware: 'auth',
   computed: {
     ...mapState('prefix', ['name']),
-    ...mapGetters({
-      banks: 'banks/banks',
-    }),
+    ...mapState({ bankIcons: 'bankIcons' }),
   },
   methods: {
     copy() {

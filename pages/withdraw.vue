@@ -5,15 +5,18 @@
       <div class="content form">
         <p class="opacity--text">ถอนเงินเข้าบัญชีธนาคาร</p>
         <div class="cover">
-          <div class="bank-logo" :style="{ background: banks['scb'].color }">
+          <div
+            class="bank-logo"
+            :style="{ background: bankIcons['scb'].color }"
+          >
             <v-img
-              :src="banks['scb'].image"
-              :alt="banks['scb'].nice_name"
+              :src="bankIcons['scb'].image"
+              :alt="bankIcons['scb'].nice_name"
             ></v-img>
           </div>
           <div class="bank-detail">
             <small class="opacity--text">{{
-              banks['scb'].official_name_thai
+              bankIcons['scb'].official_name_thai
             }}</small>
             <p>7522352121</p>
             <p>ธีรวุฒิ เชื้อตาพระ</p>
@@ -29,7 +32,7 @@
         <label for="">จำนวนเงินที่ต้องการถอน</label>
         <v-text-field
           v-model="amount"
-          :rules="rules_phone"
+          :rules="rules_amount"
           type="tel"
           color="yellow darken-2"
           :background-color="primaryDarken"
@@ -56,7 +59,7 @@
 </template>
         
 <script>
-import { mapGetters, mapState } from 'vuex'
+import { mapState } from 'vuex'
 
 export default {
   name: 'Withdraw',
@@ -76,9 +79,7 @@ export default {
   computed: {
     ...mapState('prefix', ['name']),
     ...mapState('color', ['primaryDarken']),
-    ...mapGetters({
-      banks: 'banks/banks',
-    }),
+    ...mapState({ bankIcons: 'bankIcons' }),
   },
   methods: {
     copy() {

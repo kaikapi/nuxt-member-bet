@@ -35,6 +35,7 @@
 import { mapActions, mapState } from 'vuex'
 
 export default {
+  name: 'Promotions',
   layout: 'default',
   head() {
     return {
@@ -43,10 +44,10 @@ export default {
   },
   computed: {
     ...mapState('prefix', ['name']),
-    ...mapState('promotion', ['promotions']),
+    ...mapState({ promotions: 'promotions' }),
   },
   mounted() {
-    this.getPromotions()
+    // this.getPromotions()
   },
   methods: {
     ...mapActions({

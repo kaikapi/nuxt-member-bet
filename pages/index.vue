@@ -1,7 +1,7 @@
 <template>
-  <section id="home">
+  <div class="content-wrapper">
     <div class="content">Home Index</div>
-    <div class="content mt-5 pa-0">
+    <!-- <div class="content mt-5 pa-0">
       <template v-if="news">
         <v-carousel
           cycle
@@ -19,26 +19,27 @@
           ></v-carousel-item>
         </v-carousel>
       </template>
-    </div>
-  </section>
+    </div> -->
+  </div>
 </template>
 
 <script>
-import { mapGetters, mapState } from 'vuex'
+// import { mapGetters, mapState } from 'vuex'
 
 export default {
   name: 'IndexPage',
   layout: 'default',
-  computed: {
-    ...mapState('main', ['customerMain']),
-    ...mapGetters({
-      banks: 'banks/get_bank',
-      credit: 'main/credit',
-      customer: 'main/customer',
-      news: 'main/news',
-      new_subs: 'main/new_subs',
-      promotions: 'main/promotion_general',
-    }),
-  },
+  middleware: 'auth',
+  // computed: {
+  //   ...mapState('main', ['customerMain']),
+  //   ...mapGetters({
+  //     banks: 'banks/get_bank',
+  //     credit: 'main/credit',
+  //     customer: 'main/customer',
+  //     news: 'main/news',
+  //     new_subs: 'main/new_subs',
+  //     promotions: 'main/promotion_general',
+  //   }),
+  // },
 }
 </script>

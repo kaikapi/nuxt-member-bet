@@ -2,19 +2,19 @@
   <div class="content-wrapper">
     <div class="content form">
       <div class="cover">
-        <div class="bank-logo" :style="{ background: banks['scb'].color }">
+        <div class="bank-logo" :style="{ background: bankIcons['scb'].color }">
           <v-img
-            :src="banks['scb'].image"
-            :alt="banks['scb'].nice_name"
+            :src="bankIcons['scb'].image"
+            :alt="bankIcons['scb'].nice_name"
           ></v-img>
         </div>
-        <div v-if="customer" class="bank-detail">
+        <!-- <div v-if="customer" class="bank-detail">
           <small class="opacity--text">{{
-            banks['scb'].official_name_thai
+            bankIcons['scb'].official_name_thai
           }}</small>
           <p>7522352121</p>
           <p>{{ customer.full_name }}</p>
-        </div>
+        </div> -->
       </div>
     </div>
     <div :class="{ collapse: isCollapsed }" class="summary mt-5">
@@ -24,7 +24,7 @@
           99
         </div>
         <div class="arrow">
-          <a href="javascrip:void(0)" @click="toggleSummary">
+          <a href="javascript:void(0)" @click="toggleSummary">
             <v-icon color="primary" class="text-h4"
               >mdi-chevron-{{ isCollapsed ? 'down' : 'up' }}</v-icon
             >
@@ -87,21 +87,22 @@ export default {
   }),
   computed: {
     ...mapState('prefix', ['name']),
-    ...mapState('main', ['customerMain']),
+    ...mapState({ bankIcons: 'bankIcons' }),
+    // ...mapState('main', ['customerMain']),
     ...mapGetters({
-      banks: 'banks/banks',
-      credit: 'main/credit',
-      customer: 'main/customer',
-      news: 'main/news',
-      new_subs: 'main/new_subs',
-      promotions: 'main/promotion_general',
+      // bankIcons: 'bankIcons',
+      // credit: 'main/credit',
+      // customer: 'main/customer',
+      // news: 'main/news',
+      // new_subs: 'main/new_subs',
+      // promotions: 'main/promotion_general',
     }),
   },
   created() {
     setTimeout(() => this.toggleSummary(), 2000)
   },
   mounted() {
-    this.getCustomerMain()
+    // this.getCustomerMain()
   },
   methods: {
     ...mapActions({

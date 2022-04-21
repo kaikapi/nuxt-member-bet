@@ -104,7 +104,7 @@ a {
   height: 86px;
   border-radius: 5px;
   padding: 5px;
-  color: #fff;
+  color: #fff !important;
   font-weight: 400;
   transition: all 0.15s ease-in-out;
 }
